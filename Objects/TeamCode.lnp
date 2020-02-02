@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\TeamCode" 
+PRINT(".\Listings\TeamCode.m51") RAMSIZE(256) 

@@ -1,0 +1,173 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        01/30/2020  08:33:37  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\TeamCode PRINT (.\Listings\TeamCode.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?COPY)
+
+
+LINK MAP OF MODULE:  .\Objects\TeamCode (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0024H     UNIT         _DATA_GROUP_
+            DATA    002CH     0002H     UNIT         ?DT?MAIN
+            IDATA   002EH     0001H     UNIT         ?STACK
+
+            * * * * * * *  X D A T A   M E M O R Y  * * * * * * *
+            XDATA   0000H     0001H     ABSOLUTE     
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     00F6H     UNIT         ?C?LIB_CODE
+            CODE    08F6H     00C3H     UNIT         ?PR?FILL_EXT_MEM?MAIN
+            CODE    09B9H     0024H     UNIT         ?CO?MAIN
+            CODE    09DDH     0015H     UNIT         ?PR?MAIN?MAIN
+            CODE    09F2H     000DH     UNIT         ?PR?DELAY?MAIN
+            CODE    09FFH     000CH     UNIT         ?C_C51STARTUP
+            CODE    0A0BH     0008H     UNIT         ?PR?FLASHING?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\TeamCode (MAIN)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                  -----    -----
+  +--> ?PR?FLASHING?MAIN
+  +--> ?PR?FILL_EXT_MEM?MAIN
+
+?PR?FLASHING?MAIN              -----    -----
+  +--> ?PR?DELAY?MAIN
+
+?PR?FILL_EXT_MEM?MAIN          0008H    0024H
+BL51 BANKED LINKER/LOCATER V6.22                                                      01/30/2020  08:33:37  PAGE 2
+
+
+  +--> ?CO?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\TeamCode (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  B:0090H.0       PUBLIC        Error_Led
+  D:00A8H         PUBLIC        IE
+  B:0090H.7       PUBLIC        End_Led
+  C:09F2H         PUBLIC        delay
+  D:00B8H         PUBLIC        IP
+  C:09DDH         PUBLIC        main
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  X:0000H         PUBLIC        loc
+  C:09B9H         SYMBOL        _?ix1000
+  C:0A0BH         PUBLIC        flashing
+  D:002CH         PUBLIC        ptr
+  B:0090H.1       PUBLIC        Flash_Led
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  C:08F6H         PUBLIC        fill_ext_mem
+  -------         PROC          DELAY
+  -------         DO            
+  D:0007H         SYMBOL        i
+  D:0006H         SYMBOL        j
+  D:0005H         SYMBOL        k
+  -------         ENDDO         
+  C:09F2H         LINE#         12
+  C:09F2H         LINE#         13
+  C:09F2H         LINE#         15
+  C:09F4H         LINE#         16
+  C:09F6H         LINE#         17
+  C:09FEH         LINE#         18
+  -------         ENDPROC       DELAY
+  -------         PROC          FLASHING
+  C:0A0BH         LINE#         21
+  C:0A0BH         LINE#         22
+  C:0A0BH         LINE#         23
+  C:0A10H         LINE#         24
+  -------         ENDPROC       FLASHING
+  -------         PROC          FILL_EXT_MEM
+  -------         DO            
+  D:0006H         SYMBOL        i
+  D:0008H         SYMBOL        mem_code
+  -------         ENDDO         
+  C:08F6H         LINE#         28
+  C:08F6H         LINE#         29
+  C:08F6H         LINE#         31
+  C:0909H         LINE#         39
+BL51 BANKED LINKER/LOCATER V6.22                                                      01/30/2020  08:33:37  PAGE 3
+
+
+  C:090FH         LINE#         41
+  C:091BH         LINE#         42
+  C:0927H         LINE#         43
+  C:0936H         LINE#         45
+  C:093CH         LINE#         47
+  C:0948H         LINE#         48
+  C:0951H         LINE#         49
+  C:0960H         LINE#         51
+  C:0966H         LINE#         53
+  C:0973H         LINE#         54
+  C:097FH         LINE#         55
+  C:098EH         LINE#         57
+  C:0994H         LINE#         59
+  C:09A0H         LINE#         60
+  C:09A9H         LINE#         61
+  C:09B8H         LINE#         62
+  -------         ENDPROC       FILL_EXT_MEM
+  -------         PROC          MAIN
+  -------         DO            
+  D:0004H         SYMBOL        count
+  -------         ENDDO         
+  C:09DDH         LINE#         65
+  C:09DDH         LINE#         66
+  C:09DDH         LINE#         67
+  C:09DFH         LINE#         69
+  C:09E1H         LINE#         70
+  C:09E3H         LINE#         71
+  C:09E5H         LINE#         73
+  C:09E5H         LINE#         74
+  C:09E8H         LINE#         76
+  C:09EAH         LINE#         78
+  C:09EAH         LINE#         81
+  C:09EDH         LINE#         83
+  C:09EDH         LINE#         84
+  C:09EDH         LINE#         85
+  C:09F0H         LINE#         86
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        ?C?COPY
+  C:08D0H         PUBLIC        ?C?COPY
+  -------         ENDMOD        ?C?COPY
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0111H BYTE (13%) *
+******************************************************************************
+
+Program Size: data=47.0 xdata=1 code=534
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

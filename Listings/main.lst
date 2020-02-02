@@ -1,0 +1,113 @@
+C51 COMPILER V9.54   MAIN                                                                  01/30/2020 08:33:36 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <reg52.h>
+   2          
+   3          sbit Error_Led  = P1^0;   //RED       
+   4          sbit End_Led  = P1^7;     //GREEN
+   5          sbit Flash_Led  = P1^1;   //YELLOW
+   6          
+   7          
+   8          unsigned char  xdata loc _at_ 0x0000;
+   9          unsigned char  xdata *ptr;
+  10                 
+  11                 
+  12          void delay()  
+  13          {
+  14   1        unsigned char i,j,k;
+  15   1        for(i = 3; i > 0 ; i--)
+  16   1         for(j = 255; j > 0 ; j--)
+  17   1          for(k = 255; k > 0 ; k--);
+  18   1      }
+  19          
+  20          
+  21          void flashing()
+  22          {    
+  23   1          Flash_Led = (Flash_Led ^ 1);
+  24   1          delay(); 
+  25   1      }
+  26          
+  27          
+  28          void fill_ext_mem()
+  29          {  
+  30   1          unsigned int i;
+  31   1          unsigned char mem_code[36]={ 0x02,0x08,0x0C,0xC2,0x91,
+  32   1                0x12,0x08,0x18,0xD2,0x91,
+  33   1                0x12,0x08,0x18,0x80,0xF4,
+  34   1                0x78,0x7F,0xE4,0xF6,0xD8,
+  35   1                0xFD,0x75,0x81,0x08,0x02,
+  36   1                0x08,0x00,0x7F,0xFF,0x7E,
+  37   1                0xFF,0xDE,0xFE,0xDF,0xFA,0x22 };
+  38   1                    
+  39   1          ptr = &loc;
+  40   1                
+  41   1          for(i = 0; i < 3; i++, ptr++){
+  42   2          *ptr = mem_code[i];
+  43   2          }
+  44   1          
+  45   1          ptr = 0x3;
+  46   1          
+  47   1          for(i = 0; i < 2045; i++, ptr++){
+  48   2          *ptr = 0xFF;
+  49   2          }
+  50   1          
+  51   1          ptr = 0x800;
+  52   1          
+  53   1          for(i = 3; i < 36; i++, ptr++){
+  54   2            *ptr = mem_code[i];
+C51 COMPILER V9.54   MAIN                                                                  01/30/2020 08:33:36 PAGE 2   
+
+  55   2          }
+  56   1       
+  57   1          ptr = 0x821;
+  58   1          
+  59   1          for(i = 0; i < 30687; i++, ptr++){
+  60   2          *ptr = 0xFF;
+  61   2          }
+  62   1      }
+  63          
+  64          
+  65          void main()
+  66          {
+  67   1          unsigned char count = 5;
+  68   1              
+  69   1          Error_Led = 1;
+  70   1          End_Led   = 1;
+  71   1          Flash_Led = 1;
+  72   1          
+  73   1          do {
+  74   2          flashing();
+  75   2            
+  76   2          count--;
+  77   2          
+  78   2           } while(count != 0);
+  79   1            
+  80   1          
+  81   1          fill_ext_mem();
+  82   1          
+  83   1          while(1)
+  84   1          {
+  85   2              flashing();
+  86   2          }
+  87   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    237    ----
+   CONSTANT SIZE    =     36    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2      36
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
